@@ -1,5 +1,6 @@
 import React from 'react';
 import Books from './Books';
+import AddBookForm from './AddBookForm';
 
 class BookList extends React.Component {
   constructor() {
@@ -29,11 +30,19 @@ class BookList extends React.Component {
       ]
     };
   }
+
+  addBook(book) {
+    let newBookArray = this.state.bookArray;
+    newBookArray.push(book);
+    this.setState({ bookArray: newBookArray });
+  }
+
   render() {
     return (
       <div>
         In Booklist
         <Books bookArray={this.state.bookArray} />
+        <AddBookForm onSubmit={this.addBook.bind(this)} />
       </div>
     );
   }
