@@ -27,7 +27,8 @@ class BookList extends React.Component {
           author: 'Robert Jordan',
           price: '19.99'
         }
-      ]
+      ],
+      route: 'viewBooks'
     };
   }
 
@@ -38,13 +39,19 @@ class BookList extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        In Booklist
-        <Books bookArray={this.state.bookArray} />
-        <AddBookForm onSubmit={this.addBook.bind(this)} />
-      </div>
-    );
+    let element;
+    switch (this.state.route) {
+      case 'viewBooks': {
+        element = <Books bookArray={this.state.bookArray} />;
+        break;
+      }
+      case 'addBook': {
+        element = <AddBookForm onSubmit={this.addBook.bind(this)} />;
+        break;
+      }
+    }
+
+    return <div>{element}</div>;
   }
 }
 
